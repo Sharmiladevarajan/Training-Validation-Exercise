@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div>
+<label>NAME</label>
+<input type="text" id="name" placeholder="enter name">  
+</div>
+<div>
+<label>FOOD</label>  
+<input type="checkbox" class="foods" >
+<label>MAGGIE</label>
+<input type="checkbox" class="foods" >
+<label>BREAD OMLETT</label>
+<input type="checkbox" class="foods" >
+<label>ONION DOSA</label>
+<input type="checkbox" class="foods" >
+<label>BIRYANI</label>
+</div>
+<div>
+<label>GENDER</label>
+<input type="radio" id="one" class="mgender" name="gender">
+<label>MALE</label>
+<input type="radio" id="teo" class="fgender" name="gender">
+<label>FEMALE</label>
+<input type="radio" id="therr" class="ogender" name="gender">
+<label>OTHERS</label>
+</div>
+<div>
+<label>EMAIL</label>
+<input type="text" id="email" placeholder="enter email">
+</div>
+<div>
+    <label>NEW PASSWORD</label>
+    <input type="password" id="new-password" placeholder="new password">
+</div>
+<div>
+    <label>CONFIRM PASSWORD</label>
+    <input type="password" id="confirm-password" placeholder="confirm password">
+</div>
+<div>
+    <button onclick="validation()">VALIDATE</button>
+    <button onclick="outcome()">SUBMIT</button>
+</div>
+</body>
+
+<script>
+
+    function validation(){
+        debugger;
+        let arr=[];
+        if(document.getElementById("name").value==""){
+            // alert("enter valid name")
+            // return false;
+            arr.push("enter valid name")
+        }
+    //   valid for checkbox
+        var checklist=document.getElementsByClassName("foods");
+        let countcheck=0;
+        for(var i=0;i<checklist.length;i++)
+        if(checklist[i].checked){
+            countcheck++;
+        }
+        if(countcheck==0){
+            // alert("check atleast one food")
+            // return false;
+            arr.push("check atleast one food")
+        }
+
+        // valid for radio
+        var radiolist=document.getElementsByName("gender");
+        let countradio=0;
+        for(var i=0;i<radiolist.length;i++){
+            if(radiolist[i].checked){
+            let a=radiolist[i].id;
+            countradio++;  
+        
+            }
+        }
+        if(countradio==0){
+            // alert("enter gender")
+            // return false;
+            arr.push("enter gender")
+        }
+        // email validation
+        var emailpattern=/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+        if(!document.getElementById("email").value.match(emailpattern)){
+            // alert("enter valid email")
+            // return false;
+            arr.push("enter valid email")
+
+        }
+        // password validation
+         var passwordpattern= /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/;
+        if(!document.getElementById("new-password").value.match(passwordpattern)){
+            // alert("enter required password")
+            // return false;}  
+            arr.push("enter valid password")
+
+        }
+        // compare validation
+        var newpassword=document.getElementById("new-password").value;
+        var confirmpassword=document.getElementById("confirm-password").value;
+        if(confirmpassword!=newpassword){
+            // alert("password is not match")
+            arr.push(" password is not matching")
+        }
+        if(arr.length!=0){
+            alert(arr)
+        }
+
+
+    }
+    function outcome(){
+        alert("form submited")
+    }
+</script>
+</html>
